@@ -18,8 +18,9 @@ class RoarController
      *
      * @return Response
      */
-    public function roar()
+    public function roar($count)
     {
-        return new Response('ROOOOOOOOAR!');
+        $roar = 'R'.str_repeat('O', $count).'AR!';
+        return new Response($roar);
     }
 }
