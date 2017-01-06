@@ -7,6 +7,7 @@ services:
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-  dino_roar.roar_generator:
-    class: Drupal\dino_roar\Jurassic\RoarGenerator
-    
+    dino_roar.roar_generator:
+        class: Drupal\dino_roar\Jurassic\RoarGenerator
+        arguments:
+            -   '@keyvalue'
