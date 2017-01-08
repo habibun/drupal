@@ -22,12 +22,19 @@ class RoarGenerator
     private $keyValueFactory;
 
     /**
+     * @var boolean
+     */
+    private $useCache;
+
+    /**
      * RoarGenerator constructor.
      * @param KeyValueFactoryInterface $keyValueFactory
+     * @param boolean $useCache
      */
-    public function __construct(KeyValueFactoryInterface $keyValueFactory)
+    public function __construct(KeyValueFactoryInterface $keyValueFactory, $useCache)
     {
         $this->keyValueFactory = $keyValueFactory;
+        $this->useCache = $useCache;
     }
 
 
@@ -40,7 +47,7 @@ class RoarGenerator
         $store = $this->keyValueFactory->get('dino');
         $key = 'roar_'.$length;
 
-        if($store->has($key)){
+        if($this->useCache && $store->has($key)){
             return $store->get($key);
         }
 
@@ -48,8 +55,9 @@ class RoarGenerator
 
 //        $roar = 'R'.str_repeat('O', $length).'AR!';
         $string = 'R'.str_repeat('O', $length).'AR!';
-        $store->set($key, $string);
-
+        if($this->useCache){
+            $store->set($key, $string);
+        }
 
 //        return $roar;
         return $string;
