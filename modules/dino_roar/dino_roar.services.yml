@@ -1,4 +1,5 @@
-
+parameters:
+  dino_roar.use_key_value_cache:  true
 
 services:
 #    acme.demo.example:
@@ -9,11 +10,9 @@ services:
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-    dino_roar.roar_generator:
-      class: Drupal\dino_roar\Jurassic\RoarGenerator
-      arguments:
-         -   '@keyvalue'
-         -   '%dino_roar.use_key_value_cache%'
 
-parameters:
-  dino_roar.use_key_value_cache:  true
+  dino_roar.roar_generator:
+    class: Drupal\dino_roar\Jurassic\RoarGenerator
+    arguments:
+       -   '@keyvalue'
+       -   '%dino_roar.use_key_value_cache%'

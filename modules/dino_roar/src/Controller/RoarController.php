@@ -16,8 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class RoarController
- * @package Drupal\dino_roar\Controller
+ * Class RoarController.
  */
 class RoarController extends ControllerBase
 {
@@ -33,7 +32,8 @@ class RoarController extends ControllerBase
 
     /**
      * RoarController constructor.
-     * @param RoarGenerator $roarGenerator
+     *
+     * @param RoarGenerator                 $roarGenerator
      * @param LoggerChannelFactoryInterface $loggerChannelFactory
      */
     public function __construct(RoarGenerator $roarGenerator, LoggerChannelFactoryInterface $loggerChannelFactory)
@@ -42,16 +42,16 @@ class RoarController extends ControllerBase
         $this->loggerChannelFactory = $loggerChannelFactory;
     }
 
-
     /**
      * Return Response.
      *
      * @param $count
+     *
      * @return Response
      */
     public function roar($count)
     {
-//        $keyValueStore = $this->keyValue('dino');
+        //        $keyValueStore = $this->keyValue('dino');
         $roar = $this->roarGenerator->getRoar($count);
 //        $keyValueStore->set('roar_string', $roar);
 //        $keyValueStore->get('roar_string');
@@ -65,12 +65,14 @@ class RoarController extends ControllerBase
 
     /**
      * @param ContainerInterface $container
+     *
      * @return static
      */
     public static function create(ContainerInterface $container)
     {
         $roarGenerator = $container->get('dino_roar.roar_generator');
         $loggerFactory = $container->get('logger.factory');
+
         return new static($roarGenerator, $loggerFactory);
     }
 }
