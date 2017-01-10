@@ -60,7 +60,10 @@ class RoarController extends ControllerBase
         $this->loggerChannelFactory->get('default')
             ->debug($roar);
 
-        return new Response($roar);
+//        return new Response($roar);
+        return [
+            '#title' => $roar
+        ];
     }
 
     /**
